@@ -1,0 +1,17 @@
+@import "../components/Chat/Chat.scss";
+
+%flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-flow: row;
+}
+#backend-test {
+    position: absolute;
+    @extend %flex;
+}
+
+html, body {
+    background-color: pink;
+}

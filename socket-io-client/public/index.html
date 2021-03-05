@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#000000" />
+		<meta
+			name="description"
+			content="Web site created using create-react-app"
+		/>
+		<link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+		<link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+		<title>React App</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.js" integrity="sha512-oFOCo2/3DtjrJG4N27BjSLQWoiBv171sK6a+JiWjp/7agxC2nCUP358AqzxkBUb5jX8g6CYLPdSKQTbC0weCwA==" crossorigin="anonymous"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script
+			src="https://code.jquery.com/jquery-3.4.1.min.js"
+			integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+			crossorigin="anonymous"></script>
+		<script defer>
+			const socket = io();
+		
+			window.onload = () => {
+				const form = document.querySelector('#form');
+				const input = document.querySelector('#input');
+				const chat = document.querySelector("#chat-container");
+			
+				form.addEventListener('submit', (e) => {
+				e.preventDefault();
+				if (input.value.length > 0) {
+					socket.emit('chat message', input.value);
+					input.value = '';
+				}
+				});
+				socket.on('chat message', (msg) => {
+					const item = document.createElement('li');
+					item.textContent = msg;
+					messages.appendChild(item);
+					chat.scrollTo(0, chat.scrollHeight);
+				});
+
+				// Usernames
+				let userName = prompt("What is your desired username?");
+				socket.emit('new user', userName);
+				socket.on('newClientConnect', (data) => {
+					// const users = document.createElement('p');
+					// users.textContent = `• ${userName}`;
+					// $("#users").append(users);
+					$("#users-connected").text(data.description);
+				})
+
+				// Typing...
+				var typing = false;
+				var timeout = undefined;
+
+				const typingTimeout = () => { 
+					typing = false;
+					socket.emit('typing', "");
+				}
+				input.addEventListener('keypress', (e) => {
+					if(e.which != 13) {
+						typing = true;
+						socket.emit('typing', `${userName} is typing a message...`);
+						clearTimeout(timeout);
+						timeout = setTimeout(typingTimeout, 2000);
+					} else {
+						timeout = setTimeout(typingTimeout, 2000);
+					}
+					if (e.keyCode === 13) {
+						typing = false;
+						socket.emit('typing', "");
+					}
+					socket.on('typing', (data) => {
+						document.getElementById("typing").innerText = data;
+					});
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<noscript>You need to enable JavaScript to run this app.</noscript>
+		<div id="root"></div>
+		<!--
+			This HTML file is a template.
+			If you open it directly in the browser, you will see an empty page.
+
+			You can add webfonts, meta tags, or analytics to this file.
+			The build step will place the bundled scripts into the <body> tag.
+
+			To begin the development, run `npm start` or `yarn start`.
+			To create a production bundle, use `npm run build` or `yarn build`.
+		-->
+	</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "name": "react-chat-app",
+  "version": "1.0.0",
+  "description": "Chat app created using React and Node",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "build": "cd socket-io-client && npm install && npm run-script build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "v15.8.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "heroku": "^7.47.13",
+    "node": "^15.8.0",
+    "proxy": "^1.0.2",
+    "socket.io": "^3.1.1"
+  }
+}
