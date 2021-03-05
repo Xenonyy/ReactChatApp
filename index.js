@@ -24,13 +24,13 @@ app.get('*', (req, res) => {
 let clients = 0;
 io.on('connection', (socket) => {
 	clients++;
-	io.emit('newClientConnect',{ description: clients + ' users connected!'});
+	io.emit('newClientConnect',{ description: clients + ' user(s) connected!'});
 	socket.on('new user', (userName) => {
 		io.emit('chat message',`Welcome to the chatroom, ${userName}!`);
 		console.log('A user has connected.');
 		socket.on('disconnect', () => {
 			clients--;
-			io.emit('newClientConnect',{ description: clients + ' users connected!'});
+			io.emit('newClientConnect',{ description: clients + ' user(s) connected!'});
 			io.emit('chat message',`${userName} has disconnected.`);
 			console.log('A user has disconnected.');
 		});

@@ -5,7 +5,7 @@ export const Chat = () => {
         <section id = "chat-main-container">
             <div id = "profile">
                 <div id = "users">Users Online
-                <p id = "users-connected">1 user connected!</p>
+                <p id = "users-connected">1 user(s) connected!</p>
                 <p className = "username"></p>
                 </div>
             </div>
