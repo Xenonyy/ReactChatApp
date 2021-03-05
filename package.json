@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "build": "npm install && cd socket-io-client && npm install && npm run-script build",
+    "build": "cd socket-io-client && npm install",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "ng build"
+    "postinstall": "npm run-script build"
   },
   "engines": {
     "node": "v15.8.0"
@@ -20,6 +20,7 @@
     "heroku": "^7.47.13",
     "node": "^15.8.0",
     "proxy": "^1.0.2",
-    "socket.io": "^3.1.1"
+    "socket.io": "^3.1.1",
+    "socket.io-client": "^3.1.2"
   }
 }
