@@ -3,6 +3,17 @@ import React from 'react';
 export class WelcomePage extends React.Component {
     hidePage = () => {
         document.querySelector("#welcome-page").classList.add("hidden");
+        document.querySelector('#input').focus();
+    }
+    hidePageEnter = () => {
+        let input = document.getElementById("username-input");
+        input.addEventListener('keypress', (e) => {
+            if(e.key == "Enter") {
+                console.log("enter")
+                this.hidePage();
+            }
+            document.querySelector('#input').focus();
+        });
     }
     render() {
         return(
@@ -12,8 +23,8 @@ export class WelcomePage extends React.Component {
                     <p id = "welcome-subtext">Please select a username.</p>
                     <div id = "username-container">
                         <p id = "username-text">Username: </p>
-                        <input id = "username-input" maxLength = "16" />
-                        <button id = "username-button" onClick = {() => this.hidePage()}>Confirm</button>
+                        <input id = "username-input" maxLength = "16" autoFocus onKeyPress = {() => this.hidePageEnter()}/>
+                        <button type = "submit" id = "username-button" onClick = {() => this.hidePage()}>Confirm</button>
                     </div>
                 </div>
                 <div style={{overflow: "hidden"}} id = "svg-container">
