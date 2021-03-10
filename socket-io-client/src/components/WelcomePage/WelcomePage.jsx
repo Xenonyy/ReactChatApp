@@ -23,7 +23,7 @@ export class WelcomePage extends React.Component {
                     <p id = "welcome-subtext">Please select a username.</p>
                     <div id = "username-container">
                         <p id = "username-text">Username: </p>
-                        <input id = "username-input" maxLength = "16" autoFocus onKeyPress = {() => this.hidePageEnter()}/>
+                        <input id = "username-input" maxLength = "16" onKeyPress = {() => this.hidePageEnter()} autofocus = "true" autoFocus = {true} />
                         <button type = "submit" id = "username-button" onClick = {() => this.hidePage()}>Confirm</button>
                     </div>
                 </div>
