@@ -26,17 +26,38 @@
 				async function setUsername() {
 					const button = document.querySelector('#username-button');
 					const welcome = document.querySelector('#welcome-page');
+					const usernameInput = document.getElementById("username-input");
+					
+					usernameInput.addEventListener('keypress', (e) => {
+						if(e.key == "Enter") {
+							const userName = document.querySelector('#username-input').value;
+							let userArr = [];
+							userArr.push(userName);
+							socket.emit('new user', userName);
+							socket.on('new user', (data) => {
+								$("span").remove(); // Remove all span elements, before creating the updated ones.
+								let users = data.data;
+								for (const user of users) {
+									const onlineUsers = document.createElement('span');
+									onlineUsers.textContent = `• ${user}`;
+									$("#users").append(onlineUsers);
+								}
+								console.log(users);
+							});
+							console.log("enter223")
+						}
+					});
 					button.addEventListener("click", () => {
 						const userName = document.querySelector('#username-input').value;
 						let userArr = [];
 						userArr.push(userName);
 						socket.emit('new user', userName);
 						socket.on('new user', (data) => {
-							$(".update-users-p").remove(); // Remove all p elements, before creating the updated ones.
+							$("span").remove(); // Remove all span elements, before creating the updated ones.
 							let users = data.data;
 							for (const user of users) {
-								const onlineUsers = document.createElement('p')
-								$("p").addClass("update-users-p");
+								const onlineUsers = document.createElement('span');
+								// $("p").addClass("update-users-p");
 								onlineUsers.textContent = `• ${user}`;
 								$("#users").append(onlineUsers);
 								// $(".username").text(data.data);

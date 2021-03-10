@@ -37,9 +37,10 @@ io.on('connection', (socket) => {
 		console.log('A user has connected.');
 		socket.on('disconnect', () => {
 			clients--;
-			filter = users.filter(e => e !== `${userName}`);
-			io.emit('new user', {data: filter});
-			console.log(filter);
+			let filter = users.filter(e => e !== `${userName}`);
+			users = filter;
+			io.emit('new user', {data: users});
+			console.log(users);
 			io.emit('newClientConnect',{ description: clients + ' user(s) connected!'});
 			io.emit('chat message',`${userName} has disconnected.`);
 			console.log('A user has disconnected.');
