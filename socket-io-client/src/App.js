@@ -1,5 +1,6 @@
 import React from 'react';
 import { Chat } from './components/Chat/Chat';
+import { WelcomePage } from './components/WelcomePage/WelcomePage';
 import './css/Main.scss';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
 
   return ([
 	<div id = "backend-test" style = {{position: 'absolute'}}>{!data ? "Loading..." : data}</div>,
+  <WelcomePage />,
   <Chat />
   ]);
 }

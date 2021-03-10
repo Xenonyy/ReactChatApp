@@ -1,0 +1,32 @@
+#welcome-page {
+    @extend %flex;
+    z-index: 2;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: pink;
+}
+#page-container {
+    @extend %flex;
+    flex-flow: column !important;
+}
+#welcome-text {
+    font-size: 4rem;
+    margin: 1em 0 .5rem;
+}
+#welcome-subtext {
+    font-style: oblique;
+    font-weight: 500;
+}
+#username-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: baseline;
+    width: 50%;
+    height: 4em;
+}
+#svg-container {
+    position: absolute;
+    width: 100%;
+    bottom: -0.5em;
+}
