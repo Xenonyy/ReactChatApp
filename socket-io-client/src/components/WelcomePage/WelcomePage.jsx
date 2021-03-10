@@ -9,10 +9,9 @@ export class WelcomePage extends React.Component {
         let input = document.getElementById("username-input");
         input.addEventListener('keypress', (e) => {
             if(e.key == "Enter") {
-                console.log("enter")
                 this.hidePage();
+                document.querySelector('#input').focus();
             }
-            document.querySelector('#input').focus();
         });
     }
     render() {
