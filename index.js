@@ -6,7 +6,9 @@ const http = require('http').Server(app);
 const io = require('socket.io')(http, {
 	cors: {
 	  origin: "http://localhost:3000",
-	}});
+	},
+	serveClient: true
+});
 
 // Have Node serve the files for our built React app
 app.use(express.static(path.resolve(__dirname, './socket-io-client/build')));
@@ -22,14 +24,22 @@ app.get('*', (req, res) => {
 
 // Socket.io
 let clients = 0;
+let users = [];
 io.on('connection', (socket) => {
 	clients++;
 	io.emit('newClientConnect',{ description: clients + ' user(s) connected!'});
 	socket.on('new user', (userName) => {
-		io.emit('chat message',`Welcome to the chatroom, ${userName}!`);
+		socket.username = userName;
+		users.push(userName);
+		io.emit('new user', {data: users});
+		// console.log(users);
+		io.emit('chat message',`Welcome to the chatroom, ${userName}`);
 		console.log('A user has connected.');
 		socket.on('disconnect', () => {
 			clients--;
+			filter = users.filter(e => e !== `${userName}`);
+			io.emit('new user', {data: filter});
+			console.log(filter);
 			io.emit('newClientConnect',{ description: clients + ' user(s) connected!'});
 			io.emit('chat message',`${userName} has disconnected.`);
 			console.log('A user has disconnected.');
