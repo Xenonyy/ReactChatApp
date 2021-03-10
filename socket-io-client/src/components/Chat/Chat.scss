@@ -68,6 +68,7 @@
     display: flex;
     max-width: 50%;
     line-break: anywhere;
+    display: block;
 }
 #messages > li:nth-child(odd) {
     background: #2d2d2d;
