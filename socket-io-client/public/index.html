@@ -23,6 +23,7 @@
 		
 			window.onload = () => {
 				// Usernames
+				let users = [];
 				async function setUsername() {
 					const button = document.querySelector('#username-button');
 					const welcome = document.querySelector('#welcome-page');
@@ -36,8 +37,10 @@
 							socket.emit('new user', userName);
 							socket.on('new user', (data) => {
 								$("span").remove(); // Remove all span elements, before creating the updated ones.
-								let users = data.data;
-								for (const user of users) {
+								users.pop(); // Remove users before puhsing the data again.
+								users.push(data.data);
+								let currentUsers = data.data;
+								for (const user of currentUsers) {
 									const onlineUsers = document.createElement('span');
 									onlineUsers.textContent = `• ${user}`;
 									$("#users").append(onlineUsers);
@@ -54,21 +57,15 @@
 						socket.emit('new user', userName);
 						socket.on('new user', (data) => {
 							$("span").remove(); // Remove all span elements, before creating the updated ones.
-							let users = data.data;
-							for (const user of users) {
+							users.pop(); // Remove users before puhsing the data again.
+							users.push(data.data);
+							let currentUsers = data.data;
+								for (const user of currentUsers) {
 								const onlineUsers = document.createElement('span');
-								// $("p").addClass("update-users-p");
 								onlineUsers.textContent = `• ${user}`;
 								$("#users").append(onlineUsers);
-								// $(".username").text(data.data);
 							}
 							console.log(users);
-							// Style Usernames
-							// if ($("li").textContent.match(users)) {
-							// 	let nameFromInput = document.querySelector('#username-input').value;
-							// 	let replacer = $("li").textContent.replace(new RegExp(`${users}`, 'g'), `<li style="color:pink; font-size:1.4rem; font-style:bold; display:block;"> ${users} </li>`);
-							// 	$("li").innerHTML = replacer;
-							// }
 						});
 					});
 				}
@@ -100,6 +97,16 @@
 						item.textContent = msg;
 						messages.appendChild(item);
 						chat.scrollTo(0, chat.scrollHeight);
+						// Style Usernames
+						for (const user of users) {
+							for (const individualUser of user) {
+								console.log(individualUser);
+								if (item.textContent.match(individualUser)) {
+								let replacer = item.innerHTML.replace(new RegExp(`${individualUser}`, 'g'), `<li style="color:pink; font-size:1.3rem; font-weight:500;">${individualUser}</li> `);
+								item.innerHTML = replacer;
+								}
+							}
+						}
 					});
 
 					// Typing...
@@ -116,9 +123,9 @@
 							typing = true;
 							socket.emit('typing', `${nameFromInput} is typing a message...`);
 							clearTimeout(timeout);
-							timeout = setTimeout(typingTimeout, 2000);
+							timeout = setTimeout(typingTimeout, 1000);
 						} else {
-							timeout = setTimeout(typingTimeout, 2000);
+							timeout = setTimeout(typingTimeout, 1000);
 						}
 						if (e.keyCode === 13) {
 							typing = false;
