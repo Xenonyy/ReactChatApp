@@ -17,6 +17,9 @@ app.get("/api", (req, res) => {
 	// res.json({ message: "Hello from server!" });
 	res.json({ message: "Data from backend." });
 });
+app.get("/welcome", (req, res) => {
+	res.sendFile(path.resolve(__dirname, './socket-io-client/src/components/WelcomePage', 'WelcomePage.jsx'));
+});
 // All other GET requests not handled before will return our React app
 app.get('*', (req, res) => {
 	res.sendFile(path.resolve(__dirname, './socket-io-client/build', 'index.html'));
@@ -47,7 +50,7 @@ io.on('connection', (socket) => {
 		});
 		socket.on('chat message', (msg) => {
 			console.log(`message: ${msg}`);
-			io.emit('chat message', `${userName} - ${msg}`);
+			io.emit('chat message', `${userName + msg}`);
 			socket.on('typing', (data) => {
 				socket.broadcast.emit('typing', data);
 			});
