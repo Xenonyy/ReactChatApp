@@ -68,6 +68,7 @@
     color: bisque;
     // display: flex;
     // align-items: baseline;
+    line-break: anywhere;
     max-width: 50%;
 }
 #messages > li:nth-child(odd) {
