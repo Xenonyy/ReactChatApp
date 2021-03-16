@@ -13,7 +13,7 @@ export const Chat = () => {
                 <ul id = "messages"></ul>
                 <form id="form" action="">
                     <p id = "typing"></p>
-                    <input id="input" autoComplete="off" maxLength = "256" /><button>Send</button>
+                    <input id="input" autoComplete="off" maxLength = "256" placeholder = 'Type your message...'/><button>Send</button>
                 </form>
             </div>
         </section>
