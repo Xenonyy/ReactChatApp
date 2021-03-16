@@ -14,7 +14,8 @@
 		<title>React App</title>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.js" integrity="sha512-oFOCo2/3DtjrJG4N27BjSLQWoiBv171sK6a+JiWjp/7agxC2nCUP358AqzxkBUb5jX8g6CYLPdSKQTbC0weCwA==" crossorigin="anonymous"></script>
 		<script src="/socket.io/socket.io.js"></script>
-		<script
+		<script 
+			defer
 			src="https://code.jquery.com/jquery-3.4.1.min.js"
 			integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
 			crossorigin="anonymous"></script>
@@ -93,17 +94,41 @@
 
 					// Messages
 					socket.on('chat message', (msg) => {
+						const getDate = () => {
+							let date = new Date();
+							let hours = date.getHours();
+							let minutes = date.getMinutes();
+							let ampm = hours >= 12 ? 'pm' : 'am';
+							hours = hours % 12;
+							hours = hours ? hours : 12; // the hour '0' should be '12'
+							minutes = minutes < 10 ? '0'+ minutes : minutes;
+
+							let strTime = hours + ':' + minutes + ' ' + ampm;
+							return strTime;
+						}
 						const item = document.createElement('li');
-						item.textContent = msg;
+						item.textContent = `${getDate()}  ${msg}`;
 						messages.appendChild(item);
 						chat.scrollTo(0, chat.scrollHeight);
+
+						// Insert date before messages
+						if (item.textContent.match(getDate())) {
+							let replacer = item.innerHTML.replace(new RegExp(`${getDate()}`, 'g'), `<li style="color:pink; font-size:0.7rem; display:contents">${getDate()}</li> `);
+							item.innerHTML = replacer;
+						}
 						// Style Usernames
 						for (const user of users) {
 							for (const individualUser of user) {
 								console.log(individualUser);
+								if (item.textContent.match(`@${individualUser}`)) {
+									let replacer = item.innerHTML.replace(new RegExp(`@${individualUser}`, 'g'), `<li style="color:pink; font-size:1.3rem; display:contents">@${individualUser}</li> `);
+									item.innerHTML = replacer;
+									// let replacer0 = item.innerHTML.replace(new RegExp(`${individualUser}`, 'gi'), `<li style="color:pink; font-size:1.3rem; font-weight:500;">${individualUser}</li> `);
+									// item.innerHTML = replacer0;
+								}
 								if (item.textContent.match(individualUser)) {
-								let replacer = item.innerHTML.replace(new RegExp(`${individualUser}`, 'g'), `<li style="color:pink; font-size:1.3rem; font-weight:500;">${individualUser}</li> `);
-								item.innerHTML = replacer;
+									let replacer = item.innerHTML.replace(new RegExp(`${individualUser}`, 'g'), `<li style="color:pink; font-size:1.3rem; font-weight:500; display:contents">${individualUser}</li> `);
+									item.innerHTML = replacer;
 								}
 							}
 						}
