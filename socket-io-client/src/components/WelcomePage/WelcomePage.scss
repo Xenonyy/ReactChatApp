@@ -12,7 +12,7 @@
     flex-flow: column !important;
 }
 #welcome-text {
-    font-size: 4rem;
+    font-size: 1.8rem;
     margin: 1em 0 .5rem;
 }
 #welcome-subtext {
@@ -23,11 +23,19 @@
     display: flex;
     justify-content: space-evenly;
     align-items: baseline;
-    width: 50%;
     height: 4em;
+}
+#username-input {
+    margin: 0.5rem;
 }
 #svg-container {
     position: absolute;
     width: 100%;
     bottom: -0.5em;
+}
+svg {
+    width: 200%;
+    height: 110px;
+    fill: #1f1f1f;
+    transform: rotate(180deg);
 }

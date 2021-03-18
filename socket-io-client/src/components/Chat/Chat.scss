@@ -2,7 +2,7 @@
     @extend %flex;
     flex-flow: column;
     width: 100%;
-    height: 92%;
+    height: 89%;
     background-color: #333;
     position: absolute;
 }
@@ -12,16 +12,18 @@
     align-items: baseline;
     background-color: #1d1d1d;
     width: inherit;
-    height: 96%;
+    height: 100%;
     overflow-x: auto;
-    padding: 0 0 2rem;
 }
 #typing {
+    font-size: 0.8rem;
+    font-style: oblique;
+    font-weight: 600;
     width: fit-content;
     height: 2em;
     // color: whitesmoke;
     position: absolute;
-    bottom: 2em;
+    bottom: 3em;
     @extend %flex;
 }
 
@@ -36,13 +38,13 @@
     display: flex;
     height: 3rem;
     box-sizing: border-box;
-    backdrop-filter: blur(10px);
+    // backdrop-filter: blur(10px);
 }
 #input {
     border: none;
     padding: 0 1rem;
     flex-grow: 1;
-    border-radius: 2rem;
+    border-radius: 1rem;
     margin: 0.25rem;
 }
 #input:focus {
@@ -59,17 +61,18 @@
 }
 #messages {
     list-style-type: none;
-    margin: 1em 0 0 3em;
+    margin: 0.5em .5em 0;
     padding: 0;
     width: 100%;
 }
 #messages > li {
-    padding: 0.7rem 1rem;
+    padding: 0.5rem;
+    font-size: 0.7rem;
     color: bisque;
     // display: flex;
     // align-items: baseline;
-    line-break: anywhere;
-    max-width: 50%;
+    line-break: auto;
+    // max-width: 50%;
 }
 #messages > li:nth-child(odd) {
     background: #2d2d2d;
@@ -81,19 +84,38 @@
     align-items: baseline;
     justify-content: center;
     height: 95%;
-    width: 18%;
-    min-width: 15rem;
+    width: 75%;
+    transition: width .4s ease-in-out;
+}
+#hide-users {
+    width: fit-content;
+    height: 2rem;
+    background-color: pink;
+    @extend %flex;
+    position: absolute;
+    padding: 0 0.5rem;
+}
+.hide-animation {
+    // transform: translateX(-150px);
+    // transition-duration: 1s;
+    width: 10% !important;
+    transition: width .4s ease-in-out;
+
 }
 #users {
     font-weight: 600;
     color: whitesmoke;
-    font-size: 1.5rem;
+    margin-top: 3em;
+    opacity: 1;
+    transition: opacity .25s;
 }
 #users-connected,
 #users span {
     color: pink;
-    font-size: 1rem;
+    font-size: .8rem;
     font-weight: 400;
+    opacity: 1;
+    transition: opacity .25s;
 }
 #users span {
     @extend %flex;

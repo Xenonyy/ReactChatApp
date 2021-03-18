@@ -1,6 +1,7 @@
 @import "../components/WelcomePage/WelcomePage.scss";
 @import "../components/Chat/Chat.scss";
 
+
 %flex {
     display: flex;
     justify-content: center;
@@ -15,19 +16,43 @@
 html, body {
     background-color: pink;
 }
+.hide {
+    opacity: 0 !important;
+    transition: opacity 1s;
+}
 .hidden {
     transform: translateY(-1500px);
     transition: transform 1s;
 }
 ::-webkit-input-placeholder {
     font-style: italic;
- }
- :-moz-placeholder {
-    font-style: italic;  
- }
- ::-moz-placeholder {
-    font-style: italic;  
- }
- :-ms-input-placeholder {  
-    font-style: italic; 
- }
+}
+:-moz-placeholder {
+    font-style: italic;
+}
+::-moz-placeholder {
+    font-style: italic;
+}
+:-ms-input-placeholder {  
+    font-style: italic;
+}
+
+
+// Responsiveness
+@media screen and (min-width: 768px) {
+    #welcome-text {font-size: 3rem;}
+    svg {width: 170%;height: 130px;}
+    #profile {min-width: 15rem; width: 18%;}
+    #users {font-size: 1.5rem;}
+    #messages {margin: 1em;}
+    #messages > li {padding: 0.7rem;}
+    #hide-users {display: none;} #users {margin-top: 0;}
+}
+@media screen and (min-width: 992px) {
+    #welcome-text {font-size: 4rem;}
+    svg {width: 133%;height: 147px;}
+    #users-connected, #users span, #messages, #messages > li {font-size: 1rem;}
+    #typing {font-size: .9rem;}
+    #chat-main-container {height: 91%;}
+    #typing {bottom: 2em;}
+}
