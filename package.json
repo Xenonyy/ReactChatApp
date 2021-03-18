@@ -1,5 +1,5 @@
 {
-  "name": "react-chat-app",
+  "name": "xenochat-app",
   "version": "1.0.0",
   "description": "Chat app created using React and Node",
   "main": "index.js",
