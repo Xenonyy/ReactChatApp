@@ -2,23 +2,41 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="theme-color" content="#000000" />
-		<meta
-			name="description"
-			content="Web site created using create-react-app"
-		/>
+		<meta name="theme-color" content="#ffc0cb" />
+		<meta name="description" content="Xenochat is an online chat app where you can join a public chatroom and chat with anyone."/>
 		<link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
 		<link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-		<title>React App</title>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.js" integrity="sha512-oFOCo2/3DtjrJG4N27BjSLQWoiBv171sK6a+JiWjp/7agxC2nCUP358AqzxkBUb5jX8g6CYLPdSKQTbC0weCwA==" crossorigin="anonymous"></script>
+		<link rel="shortcut icon" href="./favicon/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="./favicon/favicon.ico" type="image/x-icon">
+		<link rel="apple-touch-icon" sizes="57x57" href="./favicon/apple-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="./favicon/apple-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="./favicon/apple-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="./favicon/apple-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="./favicon/apple-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="./favicon/apple-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="./favicon/apple-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="./favicon/apple-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-icon-180x180.png">
+		<link rel="icon" type="image/png" sizes="192x192"  href="./favicon/android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="./favicon/favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+		<meta name="msapplication-TileColor" content="#ffc0cb">
+		<meta name="msapplication-TileImage" content="./favicon/ms-icon-144x144.png">
+		<title>Xenochat</title>
+		<script 
+			src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.1/socket.io.js" 
+			integrity="sha512-oFOCo2/3DtjrJG4N27BjSLQWoiBv171sK6a+JiWjp/7agxC2nCUP358AqzxkBUb5jX8g6CYLPdSKQTbC0weCwA==" 
+			crossorigin="anonymous">
+		</script>
 		<script src="/socket.io/socket.io.js"></script>
 		<script 
 			defer
 			src="https://code.jquery.com/jquery-3.4.1.min.js"
 			integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-			crossorigin="anonymous"></script>
+			crossorigin="anonymous">
+		</script>
 		<script defer>
 			const socket = io();
 		
@@ -121,13 +139,13 @@
 							for (const individualUser of user) {
 								console.log(individualUser);
 								if (item.textContent.match(`@${individualUser}`)) {
-									let replacer = item.innerHTML.replace(new RegExp(`@${individualUser}`, 'g'), `<li style="color:pink; font-size:1.3rem; display:contents">@${individualUser}</li> `);
+									let replacer = item.innerHTML.replace(new RegExp(`@${individualUser}`, 'g'), `<li style="color:pink; font-size:1.1rem; display:contents">@${individualUser}</li> `);
 									item.innerHTML = replacer;
-									// let replacer0 = item.innerHTML.replace(new RegExp(`${individualUser}`, 'gi'), `<li style="color:pink; font-size:1.3rem; font-weight:500;">${individualUser}</li> `);
+									// let replacer0 = item.innerHTML.replace(new RegExp(`${individualUser}`, 'gi'), `<li style="color:pink; font-size:1.1rem; font-weight:500;">${individualUser}</li> `);
 									// item.innerHTML = replacer0;
 								}
 								if (item.textContent.match(individualUser)) {
-									let replacer = item.innerHTML.replace(new RegExp(`${individualUser}`, 'g'), `<li style="color:pink; font-size:1.3rem; font-weight:500; display:contents">${individualUser}</li> `);
+									let replacer = item.innerHTML.replace(new RegExp(`${individualUser}`, 'g'), `<li style="color:pink; font-size:1.1rem; font-weight:500; display:contents">${individualUser}</li> `);
 									item.innerHTML = replacer;
 								}
 							}
