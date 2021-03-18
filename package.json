@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "build": "cd socket-io-client && npm run-script build",
+    "build": "cd socket-io-client && npm install && npm run-script build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
