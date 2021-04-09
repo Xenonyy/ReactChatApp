@@ -44,7 +44,6 @@ html, body {
     svg {width: 170%;height: 130px;}
     #profile {min-width: 15rem; width: 18%;}
     #users {font-size: 1.5rem;}
-    #messages {margin: 1em;}
     #messages > li {padding: 0.7rem;}
     #hide-users {display: none;} #users {margin-top: 0;}
 }
@@ -53,6 +52,7 @@ html, body {
     svg {width: 133%;height: 147px;}
     #users-connected, #users span, #messages, #messages > li {font-size: 1rem;}
     #typing {font-size: .9rem;}
-    #chat-main-container {height: 91%;}
-    #typing {bottom: 2em;}
+    #chat-main-container {height: 95%;}
+    #form {position: fixed; height: 4.5rem;}
+    #messages {margin: 1em 0 2em;}
 }
