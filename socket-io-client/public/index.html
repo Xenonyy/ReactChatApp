@@ -50,6 +50,11 @@
 					
 					usernameInput.addEventListener('keypress', (e) => {
 						if(e.key == "Enter") {
+							if ($(usernameInput).is(":invalid") === true) {
+								alert('Please choose a username of 3 of more characters.');
+								location.reload();
+								return;
+							}
 							const userName = document.querySelector('#username-input').value;
 							let userArr = [];
 							userArr.push(userName);
@@ -70,6 +75,11 @@
 						}
 					});
 					button.addEventListener("click", () => {
+						if ($(usernameInput).is(":invalid") === true) {
+								alert('Please choose a username of 3 of more characters.');
+								location.reload();
+								return;
+							}
 						const userName = document.querySelector('#username-input').value;
 						let userArr = [];
 						userArr.push(userName);
