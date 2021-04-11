@@ -12,6 +12,15 @@ export class Chat extends React.Component {
             document.getElementById("hide-users").innerText = "❯";
         }
     }
+    jumpBottom = () => {
+        const input = document.querySelector("#input");
+		const chat = document.querySelector("#chat-container");
+
+        input.addEventListener("click", () => {
+            chat.scrollTo(0, chat.scrollHeight);
+            
+        })
+    }
     render() {
         return(
             <section id = "chat-main-container">
@@ -26,7 +35,7 @@ export class Chat extends React.Component {
                     <ul id = "messages"></ul>
                     <form id="form" action="">
                         <p id = "typing"></p>
-                        <input id="input" autoComplete="off" maxLength = "256" placeholder = 'Type your message...'/><button>Send</button>
+                        <input id = "input" autoComplete = "off" maxLength = "256" placeholder = 'Type your message...' type = "text" spellCheck = "true" onClick = {() => this.jumpBottom()}/><button>Send</button>
                     </form>
                 </div>
             </section>
