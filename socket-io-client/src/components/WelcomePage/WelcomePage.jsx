@@ -6,7 +6,7 @@ export class WelcomePage extends React.Component {
         document.querySelector('#input').focus();
     }
     hidePageEnter = () => {
-        let input = document.getElementById("username-input");
+        let input = document.querySelector("#username-input");
         input.addEventListener('keypress', (e) => {
             if(e.key == "Enter") {
                 this.hidePage();
