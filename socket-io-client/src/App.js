@@ -13,10 +13,10 @@ function App() {
     }, []);
 
   return ([
-	<div id = "backend-test" style = {{position: 'absolute'}}>{!data ? "Loading..." : data}</div>,
-  <WelcomePage />,
-  <Chat />
-  ]);
+    <div id = "backend-test" style = {{position: 'absolute'}}>{!data ? "Loading..." : data}</div>,
+    <WelcomePage />,
+    <Chat />
+    ]);
 }
 
 export default App;
