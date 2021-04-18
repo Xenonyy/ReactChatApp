@@ -2,14 +2,18 @@ import React from 'react';
 
 export class Chat extends React.Component {
     hideUsers = () => {
-        if (document.getElementById("hide-users").innerText.match("❯")) {
-            document.querySelector("#profile").classList.toggle("hide-animation");
-            document.querySelector("#users").classList.toggle("hide");
-            document.getElementById("hide-users").innerText = " ❮ Hide users";
+        const hideElem = document.querySelector("#hide-users");
+        const profile =  document.querySelector("#profile");
+        const users =  document.querySelector("#users");
+
+        if (hideElem.innerText.match("❯")) {
+           profile.classList.toggle("hide-animation");
+            users.classList.toggle("hide");
+            hideElem.innerText = " ❮ Hide users";
         } else {
-            document.querySelector("#profile").classList.toggle("hide-animation");
-            document.querySelector("#users").classList.toggle("hide");
-            document.getElementById("hide-users").innerText = "❯";
+           profile.classList.toggle("hide-animation");
+            users.classList.toggle("hide");
+            hideElem.innerText = "❯";
         }
     }
     jumpBottom = () => {
