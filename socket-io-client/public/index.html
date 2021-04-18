@@ -31,70 +31,68 @@
 			crossorigin="anonymous">
 		</script>
 		<script src="/socket.io/socket.io.js"></script>
-		<script 
-			defer
-			src="https://code.jquery.com/jquery-3.4.1.min.js"
-			integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-			crossorigin="anonymous">
-		</script>
 		<script defer>
 			const socket = io();
 		
 			window.onload = () => {
 				// Usernames
-				let users = [];
-				async function setUsername() {
-					const button = document.querySelector('#username-button');
-					const welcome = document.querySelector('#welcome-page');
-					const usernameInput = document.getElementById("username-input");
-					
+				let usersArr = [];
+				const setUsername = () => {
+					const button = document.querySelector('#username-button'),
+						welcome = document.querySelector('#welcome-page'),
+						usernameInput = document.querySelector("#username-input"),
+						users = document.querySelector("#users");
+
 					usernameInput.addEventListener('keypress', (e) => {
 						if(e.key == "Enter") {
-							if ($(usernameInput).is(":invalid") === true) {
+							if (usernameInput.matches(":invalid") === true) {
 								alert('Please choose a username of 3 of more characters.');
 								location.reload();
 								return;
 							}
-							const userName = document.querySelector('#username-input').value;
-							let userArr = [];
-							userArr.push(userName);
+							const userName = usernameInput.value;
+							usersArr.push(userName);
 							socket.emit('new user', userName);
+
 							socket.on('new user', (data) => {
-								$("span").remove(); // Remove all span elements, before creating the updated ones.
-								users.pop(); // Remove users before puhsing the data again.
-								users.push(data.data);
+								// Remove all span elements, before creating the updated ones.
+								document.querySelectorAll("span").forEach((e) => {
+									e.remove();
+								});
+								usersArr.pop(); // Remove users before puhsing the data again.
+								usersArr.push(data.data);
 								let currentUsers = data.data;
 								for (const user of currentUsers) {
 									const onlineUsers = document.createElement('span');
 									onlineUsers.textContent = `• ${user}`;
-									$("#users").append(onlineUsers);
+									users.append(onlineUsers);
 								}
-								console.log(users);
 							});
-							console.log("enter223")
 						}
 					});
 					button.addEventListener("click", () => {
-						if ($(usernameInput).is(":invalid") === true) {
-								alert('Please choose a username of 3 of more characters.');
-								location.reload();
-								return;
-							}
-						const userName = document.querySelector('#username-input').value;
-						let userArr = [];
-						userArr.push(userName);
+						if (usernameInput.matches(":invalid") === true) {
+							alert('Please choose a username of 3 of more characters.');
+							location.reload();
+							return;
+						}
+						const userName = usernameInput.value;
+						usersArr.push(userName);
 						socket.emit('new user', userName);
+
 						socket.on('new user', (data) => {
-							$("span").remove(); // Remove all span elements, before creating the updated ones.
-							users.pop(); // Remove users before puhsing the data again.
-							users.push(data.data);
+							// Remove all span elements, before creating the updated ones.
+							document.querySelectorAll("span").forEach((e) => {
+									e.remove();
+								});
+							usersArr.pop(); // Remove users before puhsing the data again.
+							usersArr.push(data.data);
 							let currentUsers = data.data;
 								for (const user of currentUsers) {
 								const onlineUsers = document.createElement('span');
 								onlineUsers.textContent = `• ${user}`;
-								$("#users").append(onlineUsers);
+								users.append(onlineUsers);
 							}
-							console.log(users);
 						});
 					});
 				}
@@ -102,15 +100,18 @@
 					// const userName = document.querySelector('#username-input').nodeValue;
 					await setUsername();
 
-					
+					// Display connected users from server
+					const connectedUsers = document.querySelector("#users-connected");
 					socket.on('newClientConnect', (data) => {
-						$("#users-connected").text(data.description);
+						window.onload = () => {
+							connectedUsers.textContent(data.description);
+						}
 					});
 
 					// Send messages
-					const form = document.querySelector('#form');
-					const input = document.querySelector('#input');
-					const chat = document.querySelector("#chat-container");
+					const form = document.querySelector('#form'),
+						input = document.querySelector('#input'),
+						chat = document.querySelector("#chat-container");
 				
 					form.addEventListener('submit', (e) => {
 						e.preventDefault();
@@ -123,10 +124,10 @@
 					// Messages
 					socket.on('chat message', (msg) => {
 						const getDate = () => {
-							let date = new Date();
-							let hours = date.getHours();
-							let minutes = date.getMinutes();
-							let ampm = hours >= 12 ? 'pm' : 'am';
+							let date = new Date(),
+								hours = date.getHours(),
+								minutes = date.getMinutes(),
+								ampm = hours >= 12 ? 'pm' : 'am';
 							hours = hours % 12;
 							hours = hours ? hours : 12; // the hour '0' should be '12'
 							minutes = minutes < 10 ? '0'+ minutes : minutes;
@@ -145,7 +146,7 @@
 							item.innerHTML = replacer;
 						}
 						// Style Usernames
-						for (const user of users) {
+						for (const user of usersArr) {
 							for (const individualUser of user) {
 								console.log(individualUser);
 								if (item.textContent.match(`@${individualUser}`)) {
@@ -185,7 +186,7 @@
 							socket.emit('typing', "");
 						}
 						socket.on('typing', (data) => {
-							document.getElementById("typing").innerText = data;
+							document.querySelector("#typing").innerText = data;
 						});
 					});
 				}
