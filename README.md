@@ -4,7 +4,7 @@ A chat app created to get familiar with server-side coding and back-end in gener
 Upon visiting you can select your username, and chat with any other people who join, in a single, public chatroom.
 
 Main features include:
-- Complete mobile optimization with added features
+- Mobile optimization with added features
 - Real-time messaging
 - Showing in real-time if a user is typing
 - Custom usernames
