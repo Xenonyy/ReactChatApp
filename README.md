@@ -26,7 +26,6 @@ First time visiting the website might be slow, due to the hosting service Heroku
 * React.js - Front-end JavaScript library for UIs
 * Express.js - Back-end framework for Node.js
 * Socket.io - JavaScript library for realtime web applications
-* JavaScript(ES6)
 * Sass - Syntactically Awesome Style Sheets (CSS extension)
 * Git - Version Control System
 * Heroku - PaaS (Platform as a service)
