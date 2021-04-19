@@ -14,6 +14,7 @@ Main features include:
 - Username highlighting
 - Auto-scrolling for latest messages
 
+
 ![alt text](https://i.gyazo.com/85e4ad68bdd7fe08790b6e13dbe03a4c.png)
 
 View this project at: hhttps://xenochat-io.herokuapp.com/
