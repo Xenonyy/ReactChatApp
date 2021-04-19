@@ -17,7 +17,7 @@ Main features include:
 
 ![alt text](https://i.gyazo.com/85e4ad68bdd7fe08790b6e13dbe03a4c.png)
 
-View this project at: hhttps://xenochat-io.herokuapp.com/
+View this project at: https://xenochat-io.herokuapp.com/
 
 # Technologies used
 
