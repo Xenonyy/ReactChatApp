@@ -18,6 +18,8 @@ Main features include:
 ![alt text](https://i.gyazo.com/85e4ad68bdd7fe08790b6e13dbe03a4c.png)
 
 View this project at: https://xenochat-io.herokuapp.com/
+## Note
+First time visiting the website might be slow, due to the hosting service Heroku.
 
 # Technologies used
 
@@ -55,5 +57,3 @@ Reload the server to see changes.
 
 * **Armand Gonda**
 
-# Notes
-First time visiting the website might be slow, due to the hosting service Heroku.
