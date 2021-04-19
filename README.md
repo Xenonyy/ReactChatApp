@@ -52,6 +52,10 @@ To run the full project you will need to open up a second terminal and enter the
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.\
 Reload the server to see changes.
 
+### `npm build`
+
+Creates an optimized production ready version of the project.
+
 # Author
 
 * **Armand Gonda**
