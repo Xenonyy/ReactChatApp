@@ -49,7 +49,7 @@ io.on('connection', (socket) => {
 		});
 		socket.on('chat message', (msg) => {
 			console.log(`message: ${msg}`);
-			io.emit('chat message', `${userName}  ${msg}`);
+			io.emit('chat message', `${userName} - ${msg}`);
 			socket.on('typing', (data) => {
 				socket.broadcast.emit('typing', data);
 			});
