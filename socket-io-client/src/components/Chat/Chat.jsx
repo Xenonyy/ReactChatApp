@@ -31,7 +31,7 @@ export class Chat extends React.Component {
                 <div id = "profile">
                     <div id = "hide-users" onClick = {() => this.hideUsers()}> ❮ Hide users</div>
                     <div id = "users">Users Online
-                    <p id = "users-connected">1 user(s) connected!</p>
+                    <p id = "users-connected">1 user(s) connected! </p>
                     <span className = "username"></span>
                     </div>
                 </div>
